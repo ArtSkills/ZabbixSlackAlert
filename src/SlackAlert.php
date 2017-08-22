@@ -8,11 +8,15 @@ class SlackAlert
 	const SLACK_SUCCESS_RESULT = 'ok';
 
 	/**
+	 * Токен
+	 *
 	 * @var null|string
 	 */
 	private $_slackToken = null;
 
 	/**
+	 * Имя бота
+	 *
 	 * @var null|string
 	 */
 	private $_slackUserName = null;
@@ -30,13 +34,14 @@ class SlackAlert
 	}
 
 	/**
+	 * Отправка запроса в Slack
+	 *
 	 * @param string $channel В какой канал слать
 	 * @param string $subject Тема сообщения
 	 * @param string $message Тело сообщения
-	 * @param null|int $evenId ID события, если не null, то делает треды
 	 * @return bool
 	 */
-	public function send($channel, $subject, $message, $evenId = null)
+	public function send($channel, $subject, $message)
 	{
 		$sendData = [
 			'type' => 'message',
@@ -46,6 +51,7 @@ class SlackAlert
 			'text' => $subject . "\n" . $message,
 		];
 
+		$evenId = $this->_getEventId($message);
 		if ($evenId !== null) {
 			$workDir = ROOT . '/tmp';
 			$eventFile = $workDir . '/' . $evenId . '.json';
@@ -69,6 +75,21 @@ class SlackAlert
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Ищем ID события
+	 *
+	 * @param string $message
+	 * @return string|null
+	 */
+	private function _getEventId($message)
+	{
+		if (preg_match('/Original event ID:\s([0-9]+)\s?/m', $message, $matches)) {
+			return $matches[1];
+		} else {
+			return null;
+		}
 	}
 
 	/**

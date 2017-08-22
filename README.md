@@ -7,7 +7,7 @@ It is a simple PHP script that uses the custom alert script functionality within
 
 ## Configuration
 * Copy ``config/config.inc-sample`` to ``config/config.inc`` file.
-* Create new bot: https://artskillsteam.slack.com/apps/new/A0F7YS25R-bots
+* Create a new bot: https://artskillsteam.slack.com/apps/new/A0F7YS25R-bots
 	* Invite bot for private channels.
 	* Place "OAuth Access Token" to ``SLACK_ACCESS_TOKEN`` constant.
 	* Fill ``SLACK_USER_NAME`` constant.
@@ -19,7 +19,6 @@ It is a simple PHP script that uses the custom alert script functionality within
 		* ``{ALERT.SENDTO}``
 		* ``{ALERT.SUBJECT}``
 		* ``{ALERT.MESSAGE}``
-		* ``{EVENT.ID}``
 	* Enabled: ``true``
 * Add media to user (Media tab):
 	* Type: ``Slack``
