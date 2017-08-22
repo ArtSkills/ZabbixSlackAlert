@@ -1,0 +1,7 @@
+<?php
+/** @see https://artskillsteam.slack.com/apps/new/A0F7YS25R-bots */
+const SLACK_ACCESS_TOKEN = '';
+/** Name of the bot */
+const SLACK_USER_NAME = '';
+/** Url to the frontend server */
+const ZABBIX_FRONTEND_URL = '';
